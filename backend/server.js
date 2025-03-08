@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(cors());
 
 app.use(cors({
-    origin: 'http://localhost:5174',  // Allow frontend
+    origin: 'https://freshfruits99.vercel.app/',  // Allow frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
     credentials: true  // Allow cookies/auth headers
 }));
