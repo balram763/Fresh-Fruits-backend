@@ -2,10 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "backend for login and ecomerce",
-  "main": "server.js",
+  "main": "backend/server.js",
   "scripts": {
-    "start": "node ./backend/server.js",
-    "server": "nodemon ./backend/server.js"
+    "server": "node ./backend/server.js",
+    "dev": "nodemon ./backend/server.js",
+    "build": "npm i"
   },
   "author": "balram dhakad",
   "license": "ISC",
