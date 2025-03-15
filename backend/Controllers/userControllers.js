@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
 const salt = bcrypt.genSaltSync(10)
 
 
-const login = async(req,res) => {
+const login =expressAsyncHandler(async(req,res) => {
     const {email,password} = req.body
 
     if(!email || !password){
@@ -25,18 +25,18 @@ const login = async(req,res) => {
     const token = generateToken(user.id)
 
     if(!bcrypt.compareSync(password,user.password)){
-        return res.status(400).json('INVALID CREDENTIAL')
+        return res.status(400).json({error: 'INVALID CREDENTIAL'})
     }
 
 
     res.status(200).json({
+        name : user.name,
         email,
-        password,
         token,
-        
+        address : user.address,
     })
 }
-
+)
 const register = async(req,res) => {
     const {name,email,password} = req.body
     if(!name || !email || !password){

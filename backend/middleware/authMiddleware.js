@@ -8,11 +8,11 @@ const protectAuthMiddleware = expressAsyncHandler(async(req,res,next)=>{
             token = req.headers.authorization.split(" ")[1]
             const decode = jwt.verify(token,process.env.JWT_SECRET)
             const user = await User.findById(decode.id).select("-password")
-            req.user = user
-    
+            
             if(!user){
                 res.status(400).json({message : 'INVALID USER'})
             }
+            req.user = user
     
             next()
         }

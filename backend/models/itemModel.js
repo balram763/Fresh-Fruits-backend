@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 
 const itemSchema = new mongoose.Schema({
-    // id : {
-    //     type : String,
-    //     required : true
-    // },
     img : {
         type : String,
     },
@@ -28,7 +24,11 @@ const itemSchema = new mongoose.Schema({
         type : String,
         required : true
     }
-})
+},
+    {
+        timestamps : true
+    }
+)
 
 const Item = mongoose.model("Item",itemSchema)
 

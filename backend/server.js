@@ -1,9 +1,11 @@
 const express = require('express')
 const connectDB = require('./Config/connectDB')
 require('dotenv').config()
-const app = express()
 const cors = require('cors')
+const path = require("path");
 
+
+const app = express()
 const PORT = process.env.PORT || 5000
 
 // Database Connection
@@ -16,9 +18,9 @@ app.use(express.urlencoded({extended:true}))
 app.use(cors());
 
 app.use(cors({
-    origin: 'http://localhost:5174',  // Allow frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-    credentials: true  // Allow cookies/auth headers
+    origin: '*', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true 
 }));
 
 app.get('/',(req,res)=>{
@@ -26,6 +28,10 @@ app.get('/',(req,res)=>{
 })
 app.use('/api/user',require("./routes/userRoute"))
 app.use('/api/item',require("./routes/itemRoute"))
+app.use('/api/cart',require("./routes/cartRoutes"))
+
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.listen(PORT,()=>{
     console.log(`SERVER RUNNING AT PORT ${PORT}`)
