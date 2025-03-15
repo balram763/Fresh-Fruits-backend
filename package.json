@@ -2,7 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "backend for login and ecomerce",
-  "main": "./backend/js",
+
+  "main": "backend/server.js",
+
   "scripts": {
     "server": "node ./backend/server.js",
     "dev": "nodemon ./backend/server.js",

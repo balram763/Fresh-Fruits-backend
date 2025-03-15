@@ -18,9 +18,11 @@ app.use(express.urlencoded({extended:true}))
 app.use(cors());
 
 app.use(cors({
-    origin: '*', 
+
+    origin: '*',  
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true 
+    credentials: true  
+
 }));
 
 app.get('/',(req,res)=>{
