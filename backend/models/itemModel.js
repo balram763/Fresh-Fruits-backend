@@ -23,6 +23,11 @@ const itemSchema = new mongoose.Schema({
     category : {
         type : String,
         required : true
+    },
+    bestSeller : {
+        type : Boolean,
+        required : true,
+        default : false
     }
 },
     {
