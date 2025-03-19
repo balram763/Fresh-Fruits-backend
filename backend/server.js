@@ -28,12 +28,13 @@ app.use(cors({
 app.get('/',(req,res)=>{
     res.json("I'm WORKING")
 })
+
 app.use('/api/user',require("./routes/userRoute"))
 app.use('/api/item',require("./routes/itemRoute"))
 app.use('/api/cart',require("./routes/cartRoutes"))
 
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.listen(PORT,()=>{
     console.log(`SERVER RUNNING AT PORT ${PORT}`)
