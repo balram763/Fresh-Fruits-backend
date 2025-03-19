@@ -35,7 +35,7 @@ const getNewItem = expressAsyncHandler(async(req,res) => {
 
 const addItem = async (req, res) => {
   try {
-    const { name, price, description, qty, category } = req.body;
+    const { name, price, description, qty, category,bestSeller = false } = req.body;
     console.log("Uploaded File:", JSON.stringify(req.file, null, 2));
     
     
@@ -55,6 +55,7 @@ const addItem = async (req, res) => {
       description,
       qty,
       category,
+      bestSeller
     });
 
     res.status(201).json(newItem);
