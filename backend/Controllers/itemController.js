@@ -36,12 +36,17 @@ const getNewItem = expressAsyncHandler(async(req,res) => {
 const addItem = async (req, res) => {
   try {
     const { name, price, description, qty, category,bestSeller = false } = req.body;
-    console.log("Uploaded File:", JSON.stringify(req.file, null, 2));
     
     
     if (!req.file) {
       return res.status(400).json({ message: "Image is required" });
     }
+
+    if (!req.file.filename) {
+      return res.status(400).json({ message: "Image is required" });
+    }
+
+
     const imgUrl = req.file.path;
 
     if (!name || !price || !description || !qty || !category) {
@@ -50,6 +55,7 @@ const addItem = async (req, res) => {
 
     const newItem = await Item.create({
       img : imgUrl,
+      public_id : req.file.filename,
       name,
       price,
       description,
@@ -59,7 +65,6 @@ const addItem = async (req, res) => {
     });
 
     res.status(201).json(newItem);
-    // console.log(newItem)
   } catch (error) {
     res.status(500).json({ message: "Server Error", error: error.message });
   }
@@ -71,7 +76,6 @@ const addItem = async (req, res) => {
 
 const getbyId = expressAsyncHandler(async(req,res)=>{
     const { id } = req.params;
-    // console.log(id)
 
    try{
     const Items = await Item.findById(id)

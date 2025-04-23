@@ -3,7 +3,7 @@ const Cart = require("../models/cartModel");
 const updateCart = async (req, res) => {
     try {
         const { cart } = req.body;
-        let userCart = await Cart.findOne({ user: req.user.id });
+        let userCart = await Cart.findOne({ user: req.user._id });
 
         if (!userCart) {
             userCart = new Cart({ user: req.user.id, cart: [] });

@@ -3,7 +3,7 @@ const connectDB = require('./Config/connectDB')
 require('dotenv').config()
 const cors = require('cors')
 const path = require("path");
-
+const helmet = require("helmet")
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -15,8 +15,9 @@ connectDB()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-app.use(cors());
 
+app.use(helmet())
+app.use(cors());
 app.use(cors({
 
     origin: '*',  
@@ -32,9 +33,8 @@ app.get('/',(req,res)=>{
 app.use('/api/user',require("./routes/userRoute"))
 app.use('/api/item',require("./routes/itemRoute"))
 app.use('/api/cart',require("./routes/cartRoutes"))
-
-
-// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use('/api/orders',require("./routes/orderRoutes"))
+app.use('/api/admin', require('./routes/adminRoute'));
 
 app.listen(PORT,()=>{
     console.log(`SERVER RUNNING AT PORT ${PORT}`)
