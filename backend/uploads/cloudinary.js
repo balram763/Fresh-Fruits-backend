@@ -71,7 +71,6 @@ const storage = new CloudinaryStorage({
             folder: "uploads",
             format: file.mimetype.split("/")[1],
             public_id: Date.now() + "-" + file.originalname,
-            tags: [file.originalname.split(".")[0]], 
             context: { description: file.originalname }
         };
     },
